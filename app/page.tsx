@@ -1,7 +1,12 @@
+"use client";
+
 import Card from "@/components/dashboard/Card";
 import TopBar from "@/components/dashboard/TopBar";
+import { useTasks } from "@/hooks/useTasks";
 
 export default function Home() {
+  const { tasks } = useTasks();
+  const completedTasks = tasks.filter((t) => t.completed).length;
   return (
     <main className="min-h-screen bg-[#0f0f0f] text-white p-6">
       
@@ -17,7 +22,10 @@ export default function Home() {
 {/*Cards*/}
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card title="Tasks" value="5"/>
+      <Card
+  title="Tasks"
+  value={`${completedTasks}/${tasks.length}`}
+/>
         <Card title="Habits" value="3"/>
         <Card title="Balance" value="120$"/>
         <Card title="Streak" value="7 days"/>
