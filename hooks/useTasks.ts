@@ -73,10 +73,19 @@ export function useTasks() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   // Загрузка из localStorage
-  useEffect(() => {
+  // useEffect(() => {
+  //   const data = localStorage.getItem("tasks");
+  //   if (data) {
+  //     setTasks(JSON.parse(data));
+  //   }
+  // }, []);
+
+ useEffect(() => {
     const data = localStorage.getItem("tasks");
     if (data) {
-      setTasks(JSON.parse(data));
+      setTimeout(() => {
+        setTasks(JSON.parse(data) as Task[]);
+      });
     }
   }, []);
 

@@ -30,8 +30,15 @@ export default function RootLayout({
     >
       <body className="bg-[#0f0f0f]">
         <div className="relative">
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(120,0,255,0.15),transparent_70%)]"></div>
+  {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(120,0,255,0.15),transparent_70%)]"></div>
   <div className="flex">
+  <Sidebar />
+  <main className="flex-1 p-6">{children}</main>
+</div> */}
+{/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(120,0,255,0.15),transparent_70%)] -z-10"></div> */}
+<div className="fixed inset-0 bg-[radial-gradient(...)] pointer-events-none -z-50" />
+
+<div className="relative z-10 flex">
   <Sidebar />
   <main className="flex-1 p-6">{children}</main>
 </div>
