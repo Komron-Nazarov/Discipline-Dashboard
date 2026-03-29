@@ -239,15 +239,171 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client";
+
+// import { useEffect, useState, useRef } from "react";
+// import { Habit } from "@/types/habits";
+
+// export function useHabits() {
+//   // 1. Ленивая инициализация: функция внутри useState выполнится ТОЛЬКО ОДИН РАЗ при рождении компонента
+//   const [habits, setHabits] = useState<Habit[]>(() => {
+//     // Если мы на сервере (Next.js), возвращаем пустой массив
+//     if (typeof window === "undefined") return [];
+    
+//     try {
+//       const data = localStorage.getItem("habits");
+//       return data ? JSON.parse(data) : [];
+//     } catch (e) {
+//       console.error("Ошибка загрузки привычек:", e);
+//       return [];
+//     }
+//   });
+
+//   // Реф для отслеживания первого рендера, чтобы не сохранять пустые данные поверх старых
+//   const isFirstRender = useRef(true);
+
+//   // 2. Сохранение: следим только за изменением habits
+//   useEffect(() => {
+//     // Пропускаем самый первый рендер
+//     if (isFirstRender.current) {
+//       isFirstRender.current = false;
+//       return;
+//     }
+    
+//     localStorage.setItem("habits", JSON.stringify(habits));
+//   }, [habits]);
+
+//   const addHabit = (name: string) => {
+//     if (!name.trim()) return;
+//     const newHabit: Habit = {
+//       id: Date.now().toString(),
+//       name,
+//       completed: false,
+//       streak: 0,
+//       lastCompleted: null,
+//     };
+//     setHabits((prev) => [...prev, newHabit]);
+//   };
+
+//   const toggleHabit = (id: string) => {
+//     const today = new Date().toDateString();
+//     setHabits((prev) =>
+//       prev.map((habit) => {
+//         if (habit.id !== id) return habit;
+//         if (habit.completed) return { ...habit, completed: false };
+
+//         const yesterday = new Date();
+//         yesterday.setDate(yesterday.getDate() - 1);
+//         const isYesterday = habit.lastCompleted === yesterday.toDateString();
+
+//         return {
+//           ...habit,
+//           completed: true,
+//           streak: isYesterday ? habit.streak + 1 : 1,
+//           lastCompleted: today,
+//         };
+//       })
+//     );
+//   };
+
+//   return { habits, addHabit, toggleHabit };
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 "use client";
 
 import { useEffect, useState, useRef } from "react";
 import { Habit } from "@/types/habits";
 
 export function useHabits() {
-  // 1. Ленивая инициализация: функция внутри useState выполнится ТОЛЬКО ОДИН РАЗ при рождении компонента
+  // 1. Ленивая инициализация (загружаем данные один раз)
   const [habits, setHabits] = useState<Habit[]>(() => {
-    // Если мы на сервере (Next.js), возвращаем пустой массив
     if (typeof window === "undefined") return [];
     
     try {
@@ -259,19 +415,18 @@ export function useHabits() {
     }
   });
 
-  // Реф для отслеживания первого рендера, чтобы не сохранять пустые данные поверх старых
   const isFirstRender = useRef(true);
 
-  // 2. Сохранение: следим только за изменением habits
+  // 2. Сохранение данных в LocalStorage
   useEffect(() => {
-    // Пропускаем самый первый рендер
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
     }
-    
     localStorage.setItem("habits", JSON.stringify(habits));
   }, [habits]);
+
+  // --- МЕТОДЫ ---
 
   const addHabit = (name: string) => {
     if (!name.trim()) return;
@@ -306,5 +461,15 @@ export function useHabits() {
     );
   };
 
-  return { habits, addHabit, toggleHabit };
+  // 3. Функция удаления
+  const deleteHabit = (id: string) => {
+    setHabits((prev) => prev.filter((habit) => habit.id !== id));
+  };
+
+  return { 
+    habits, 
+    addHabit, 
+    toggleHabit, 
+    deleteHabit // <-- не забудь экспортировать
+  };
 }

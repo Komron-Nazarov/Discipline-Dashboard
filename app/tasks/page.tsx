@@ -219,6 +219,39 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -255,33 +288,33 @@ useEffect(() => {
   if (!mounted) return <div className="p-6">Loading tasks...</div>;
 
   return (
-    <div className="p-6 max-w-4xl">
+    <div className="px-4 pt-10 pb-20 sm:p-8 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-white">Tasks Management</h1>
 
       {/* ➕ Поле добавления */}
-      <div className="flex gap-2 mb-8 bg-[#1a1a1a] p-2 rounded-2xl border border-white/5 focus-within:border-purple-500/50 transition">
+      <div className="flex gap-2 mb-8 bg-[#1a1a1a] flex-col sm:flex-row rounded-2xl border border-white/5 focus-within:border-purple-500/50 transition">
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleAdd()}
           placeholder="What needs to be done?"
-          className="flex-1 p-3 bg-transparent outline-none text-white placeholder:text-gray-500"
+          className="flex-1 p-3 text-base bg-transparent outline-none text-white placeholder:text-gray-500"
         />
         <button
           onClick={handleAdd}
-          className="bg-purple-600 px-6 py-2 rounded-xl hover:bg-purple-700 text-white font-medium transition shadow-lg shadow-purple-500/20"
+          className="w-full sm:w-auto bg-purple-600 px-6 py-2 rounded-xl hover:bg-purple-700 text-white font-medium transition shadow-lg shadow-purple-500/20"
         >
           Add Task
         </button>
       </div>
 
       {/* 🔥 Фильтры */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 mb-6 overflow-x-auto no-scrollbar">
         {(["all", "active", "completed"] as const).map((f) => (
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-4 py-1.5 rounded-full text-sm capitalize transition-all duration-300 ${
+            className={`whitespace-nowrap px-4 py-1.5 rounded-full text-sm capitalize transition-all duration-300 ${
               filter === f
                 ? "bg-purple-600 text-white"
                 : "bg-[#1a1a1a] text-gray-400 hover:text-white border border-white/5"
@@ -296,40 +329,77 @@ useEffect(() => {
       <div className="grid gap-3">
         {filteredTasks.length > 0 ? (
           filteredTasks.map((task) => (
+
             <div
-              key={task.id}
-              className="group flex items-center justify-between bg-[#1a1a1a] p-4 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all duration-300"
-            >
-              <div className="flex items-center gap-4">
-                {/* Кастомный чекбокс */}
-                <button
-                  onClick={() => toggleTask(task.id)}
-                  className={`w-6 h-6 flex items-center justify-center rounded-lg border-2 transition-all ${
-                    task.completed
-                      ? "bg-purple-600 border-purple-600"
-                      : "border-gray-600 hover:border-purple-500"
-                  }`}
-                >
-                  {task.completed && <span className="text-white text-xs font-bold">✓</span>}
-                </button>
+  key={task.id}
+  className="group flex items-center justify-between bg-[#1a1a1a] min-h-[64px] p-4 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all duration-300 select-none touch-manipulation"
+>
+  <div className="flex items-center gap-4 flex-1 min-w-0">
+    {/* Кастомный чекбокс с увеличенной зоной тапа */}
+    <button
+      onClick={() => toggleTask(task.id)}
+      className={`w-7 h-7 flex shrink-0 items-center justify-center rounded-xl border-2 transition-all ${
+        task.completed
+          ? "bg-purple-600 border-purple-600"
+          : "border-gray-600 active:border-purple-500"
+      }`}
+    >
+      {task.completed && <span className="text-white text-xs font-bold">✓</span>}
+    </button>
 
-                <span
-                  className={`text-lg transition-all duration-300 ${
-                    task.completed ? "line-through text-gray-500" : "text-gray-200"
-                  }`}
-                >
-                  {task.title}
-                </span>
-              </div>
+    {/* Текст задачи с защитой от переполнения */}
+    <span
+      className={`text-base sm:text-lg leading-tight transition-all duration-300 break-words line-clamp-2 ${
+        task.completed ? "line-through text-gray-500" : "text-gray-200"
+      }`}
+    >
+      {task.title}
+    </span>
+  </div>
 
-              {/* Кнопка удаления */}
-              <button
-                onClick={() => deleteTask(task.id)}
-                className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200"
-              >
-                ✕
-              </button>
-            </div>
+  {/* Кнопка удаления: всегда видна на тач-устройствах, скрыта до ховера на десктопе */}
+  <button
+    onClick={() => deleteTask(task.id)}
+    className="ml-3 p-3 text-gray-500 active:text-red-500 sm:text-gray-600 sm:hover:text-red-500 sm:bg-red-500/0 sm:hover:bg-red-500/10 rounded-xl transition-all duration-200 opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
+    aria-label="Delete task"
+  >
+    <span className="text-xl sm:text-base">✕</span>
+  </button>
+</div>
+            // <div
+            //   key={task.id}
+            //   className="group flex items-center justify-between bg-[#1a1a1a] p-4 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all duration-300"
+            // >
+            //   <div className="flex items-center gap-4">
+            //     {/* Кастомный чекбокс */}
+            //     <button
+            //       onClick={() => toggleTask(task.id)}
+            //       className={`w-6 h-6 flex items-center justify-center rounded-lg border-2 transition-all ${
+            //         task.completed
+            //           ? "bg-purple-600 border-purple-600"
+            //           : "border-gray-600 hover:border-purple-500"
+            //       }`}
+            //     >
+            //       {task.completed && <span className="text-white text-xs font-bold">✓</span>}
+            //     </button>
+
+            //     <span
+            //       className={`text-lg transition-all duration-300 ${
+            //         task.completed ? "line-through text-gray-500" : "text-gray-200"
+            //       }`}
+            //     >
+            //       {task.title}
+            //     </span>
+            //   </div>
+
+            //   {/* Кнопка удаления */}
+            //   <button
+            //     onClick={() => deleteTask(task.id)}
+            //     className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200"
+            //   >
+            //     ✕
+            //   </button>
+            // </div>
           ))
         ) : (
           <div className="text-center py-10 text-gray-500 border-2 border-dashed border-white/5 rounded-2xl">
@@ -340,5 +410,26 @@ useEffect(() => {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
