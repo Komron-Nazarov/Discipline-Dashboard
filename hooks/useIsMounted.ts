@@ -21,3 +21,4 @@ export function useIsMounted() {
     () => false  // На сервере
   );
 }
+

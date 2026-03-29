@@ -83,9 +83,9 @@ useEffect(() => {
     <div className="w-full flex justify-between items-center bg-[#121212] p-4 rounded-2xl mb-6 shadow-sm border border-white/5">
       {/* Greeting */}
       <div>
-        <h2 className="text-gray-400 text-sm font-medium">Good Afternoon, Komron</h2>
+        <h2 className="text-gray-400 text-sm font-medium">Good Afternoon, User</h2>
         {/* suppressHydrationWarning здесь — твоя страховка */}
-        <p suppressHydrationWarning className="text-white font-semibold text-lg min-h-[28px]">
+        <p suppressHydrationWarning className="text-white font-semibold text-lg min-h-7">
           {date || "Loading..."}
         </p>
       </div>
