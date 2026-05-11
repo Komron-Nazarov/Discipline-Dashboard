@@ -34,7 +34,7 @@ export default function FinancePage() {
       <div className="bg-linear-to-br from-purple-600/20 to-[#1a1a1a] p-6 rounded-3xl mb-8 border border-white/5 shadow-2xl">
   <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">Balance</p>
   <h2 className="text-4xl font-black text-white">
-    ${balance.toLocaleString()}
+    {balance.toLocaleString()}с
   </h2>
 </div>
 
@@ -124,7 +124,7 @@ export default function FinancePage() {
 
   <div className="flex items-center gap-3">
     <span className={`font-bold text-lg ${tx.type === "income" ? "text-green-400" : "text-red-400"}`}>
-      {tx.type === "income" ? "+" : "-"}${tx.amount}
+      {tx.type === "income" ? "+" : "-"}{tx.amount}с
     </span>
 
     <button
