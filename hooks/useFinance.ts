@@ -1,10 +1,19 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Transaction } from "@/types/finance";
 
 export function useFinance(){
-    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const [transactions, setTransactions] = useState<Transaction[]>(() => {
+      if (typeof window === "undefined") return [];
+      try {
+        const data = localStorage.getItem("finance");
+        return data ? (JSON.parse(data) as Transaction[]) : [];
+      } catch {
+        return [];
+      }
+    });
+    const firstRender = useRef(true);
 
     //loading
 
@@ -19,18 +28,11 @@ export function useFinance(){
 //   }
 // }, []);
 
-useEffect(() => {
-  const data = localStorage.getItem("finance");
-  if (data) {
-    setTimeout(() => {
-      setTransactions(JSON.parse(data) as Transaction[]);
-    });
-  }
-}, []);
-
-    //saving
-
     useEffect(()=>{
+        if (firstRender.current) {
+          firstRender.current = false;
+          return;
+        }
         localStorage.setItem("finance", JSON.stringify(transactions));
     }, [transactions]);
 

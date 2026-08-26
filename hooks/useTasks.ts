@@ -66,11 +66,20 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Task } from "@/types/task";
 
 export function useTasks() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const data = localStorage.getItem("tasks");
+      return data ? (JSON.parse(data) as Task[]) : [];
+    } catch {
+      return [];
+    }
+  });
+  const firstRender = useRef(true);
 
   // Загрузка из localStorage
   // useEffect(() => {
@@ -80,17 +89,11 @@ export function useTasks() {
   //   }
   // }, []);
 
- useEffect(() => {
-    const data = localStorage.getItem("tasks");
-    if (data) {
-      setTimeout(() => {
-        setTasks(JSON.parse(data) as Task[]);
-      });
-    }
-  }, []);
-
-  // Сохранение в localStorage
   useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
