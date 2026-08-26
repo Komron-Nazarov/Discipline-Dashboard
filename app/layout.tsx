@@ -5,7 +5,7 @@ import Sidebar from "@/components/dashboard/Sidebar";
 export const metadata: Metadata = {
   title: "Discipline OS — Own the day",
   description: "A private operating system for focus, habits, tasks and money.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://discipline-os.koami-amiko.chatgpt.site"),
   openGraph: {
     title: "Discipline OS — Own the day",
     description: "A private operating system for focus, habits, tasks and money.",
