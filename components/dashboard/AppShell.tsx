@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight, BarChart3, BookOpen, CheckSquare2, Code2, ExternalLink, Landmark, Repeat2, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import Sidebar from "./Sidebar";
 import BrandIcon from "./BrandIcon";
 import { I18nProvider, useI18n } from "@/lib/i18n";
@@ -77,7 +78,7 @@ function CreatorSignature({ onAbout }: { onAbout: () => void }) {
   return <footer className="mt-10 border-t border-white/8 py-7">
     <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
       <button onClick={onAbout} className="group flex items-center gap-3 text-left"><Image src="/komron-nazarov-logo.jpg" width={46} height={46} alt="Komron Nazarov" className="size-11 rounded-full object-cover ring-1 ring-white/15 transition group-hover:ring-[#d8ff3e]/50" /><span><span className="eyebrow block text-[8px]">{t("creator.kicker")}</span><strong className="mt-1 block text-sm">{t("creator.name")}</strong></span></button>
-      <p className="max-w-md text-xs leading-5 text-[#666960]">{t("creator.description")}</p>
+      <div className="max-w-md"><p className="text-xs leading-5 text-[#666960]">{t("creator.description")}</p><div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[10px] font-bold text-[#777a72]"><Link href="/privacy" className="transition hover:text-white">{t("legal.privacy")}</Link><Link href="/terms" className="transition hover:text-white">{t("legal.terms")}</Link></div></div>
       <div className="flex gap-2"><a href="https://github.com/Komron-Nazarov" target="_blank" rel="noreferrer" className="grid size-10 place-items-center rounded-xl border border-white/8 text-[#777a72] transition hover:border-white/15 hover:text-white" aria-label="GitHub"><Code2 size={16} /></a><a href="https://kn-portfolio-one.vercel.app/" target="_blank" rel="noreferrer" className="grid size-10 place-items-center rounded-xl border border-white/8 text-[#777a72] transition hover:border-white/15 hover:text-white" aria-label={t("about.portfolio")}><ExternalLink size={16} /></a></div>
     </div>
   </footer>;

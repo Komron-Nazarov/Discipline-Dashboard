@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Discipline OS
+
+A local-first personal operating system for tasks, habits and finances, created by Komron Nazarov.
 
 ## Getting Started
 

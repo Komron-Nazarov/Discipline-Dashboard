@@ -31,8 +31,9 @@ const en = {
   "guide.3.title": "Habits build the identity", "guide.3.text": "Track the actions worth repeating. A streak is proof of consistency, not a reason for guilt.",
   "guide.4.title": "Money stays visible and calm", "guide.4.text": "Record income and expenses. The trajectory shows the direction without turning finance into noise.",
   "about.title": "About Discipline OS", "about.description": "A focused personal dashboard for turning goals into repeatable daily action — without clutter, pressure or scattered tools.",
-  "about.credit": "Designed and developed by Komron Nazarov", "about.github": "GitHub profile", "about.portfolio": "Portfolio", "about.guide": "Open guide", "about.version": "DOS-1 · Local-first workspace", "about.personalMark": "Creator and product designer",
+  "about.credit": "Designed and developed by Komron Nazarov", "about.github": "GitHub profile", "about.portfolio": "Portfolio", "about.guide": "Open guide", "about.version": "D-OS 1 · Local-first workspace", "about.personalMark": "Creator and product designer",
   "creator.kicker": "A product by", "creator.name": "Komron Nazarov", "creator.description": "Independent digital products with a clear idea, useful logic and a distinctive identity.", "creator.links": "Creator links",
+  "legal.privacy": "Privacy", "legal.terms": "Terms", "legal.updated": "Updated August 28, 2026",
   "actions.delete": "Delete", "actions.toggle": "Change status", "actions.add": "Add",
 };
 
@@ -62,8 +63,9 @@ const ru: Record<keyof typeof en, string> = {
   "guide.3.title": "Привычки формируют личность", "guide.3.text": "Отмечай действия, которые стоит повторять. Стрик — доказательство постоянства, а не повод винить себя.",
   "guide.4.title": "Деньги под спокойным контролем", "guide.4.text": "Записывай доходы и расходы. График показывает направление, не превращая финансы в шум.",
   "about.title": "О Discipline OS", "about.description": "Сфокусированная личная система, которая превращает цели в повторяемые ежедневные действия — без перегруза, давления и разбросанных инструментов.",
-  "about.credit": "Создано Комроном Назаровым", "about.github": "Профиль GitHub", "about.portfolio": "Портфолио", "about.guide": "Открыть обучение", "about.version": "DOS-1 · Локальное рабочее пространство", "about.personalMark": "Автор и дизайнер продукта",
+  "about.credit": "Создал Комрон Назаров", "about.github": "Профиль GitHub", "about.portfolio": "Портфолио", "about.guide": "Открыть обучение", "about.version": "D-OS 1 · Локальное рабочее пространство", "about.personalMark": "Автор и дизайнер продукта",
   "creator.kicker": "Продукт автора", "creator.name": "Комрон Назаров", "creator.description": "Создаю самостоятельные цифровые продукты с ясной идеей, полезной логикой и узнаваемым характером.", "creator.links": "Ссылки автора",
+  "legal.privacy": "Конфиденциальность", "legal.terms": "Условия", "legal.updated": "Обновлено 28 августа 2026",
   "actions.delete": "Удалить", "actions.toggle": "Изменить статус", "actions.add": "Добавить",
 };
 

@@ -2,6 +2,11 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import AppShell from "@/components/dashboard/AppShell";
 
+const productionUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ?? (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "https://discipline-os.vercel.app");
+
 export const metadata: Metadata = {
   title: "Discipline OS — управляй днём",
   description: "Личная операционная система для задач, привычек и финансов. Создано Комроном Назаровым.",
@@ -11,7 +16,7 @@ export const metadata: Metadata = {
   publisher: "Komron Nazarov",
   category: "productivity",
   keywords: ["Discipline OS", "дисциплина", "задачи", "привычки", "финансы", "productivity"],
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://discipline-os.koami-amiko.chatgpt.site"),
+  metadataBase: new URL(productionUrl),
   openGraph: {
     title: "Discipline OS — управляй днём",
     description: "Задачи, привычки и финансы в одной личной системе. Создано Комроном Назаровым.",
