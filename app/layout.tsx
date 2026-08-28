@@ -5,7 +5,7 @@ import AppShell from "@/components/dashboard/AppShell";
 const productionUrl = process.env.NEXT_PUBLIC_SITE_URL
   ?? (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "https://discipline-os.vercel.app");
+    : "https://discipline-os-kn.vercel.app");
 
 export const metadata: Metadata = {
   title: "Discipline OS — управляй днём",
