@@ -79,7 +79,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .fade-up { animation: fade-up 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 
 .creator-logo {
-  clip-path: circle(46.7% at 48% 47.4%);
+  border-radius: 9999px;
+  display: block;
   object-fit: cover;
 }
 
