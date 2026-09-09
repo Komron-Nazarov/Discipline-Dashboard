@@ -36,13 +36,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .panel {
   border: 1px solid var(--line);
   background: rgba(16, 17, 15, 0.9);
-  border-radius: 24px;
+  border-radius: 20px;
 }
 
 .eyebrow {
   color: var(--muted);
   font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -51,7 +51,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .field {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 12px;
   background: #0b0c0a;
   color: #f4f5ef;
   outline: none;
@@ -67,7 +67,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   justify-content: center;
   gap: 8px;
   border: 0;
-  border-radius: 14px;
+  border-radius: 12px;
   background: var(--acid);
   color: #0a0b09;
   font-weight: 800;
@@ -77,6 +77,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .acid-button:hover { background: #e2ff6c; }
 .acid-button:active { transform: scale(0.97); }
 .fade-up { animation: fade-up 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+.creator-logo {
+  clip-path: circle(46.7% at 48% 47.4%);
+  object-fit: cover;
+}
 
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(10px); }

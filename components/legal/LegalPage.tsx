@@ -73,16 +73,16 @@ export default function LegalPage({ kind }: { kind: LegalKind }) {
   const copy = content[locale];
   const page = copy[kind];
 
-  return <article className="mx-auto max-w-3xl pb-8 pt-2 sm:pt-5">
+  return <article className="mx-auto max-w-2xl pb-7 pt-2 sm:pt-4">
     <Link href="/" className="inline-flex items-center gap-2 text-xs font-bold text-[#85877f] transition hover:text-white"><ArrowLeft size={15} />{copy.back}</Link>
-    <header className="mt-8 border-b border-white/8 pb-8 sm:mt-12 sm:pb-10">
-      <div className="flex items-center gap-3"><BrandIcon size={42} /><span className="eyebrow text-[#d8ff3e]">{page.kicker}</span></div>
-      <h1 className="mt-6 text-3xl font-black tracking-[-0.05em] sm:text-5xl">{page.title}</h1>
-      <p className="mt-5 max-w-2xl text-sm leading-7 text-[#94978e] sm:text-base">{page.intro}</p>
-      <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.12em] text-[#5f625a]">{t("legal.updated")}</p>
+    <header className="mt-7 border-b border-white/8 pb-7 sm:mt-9 sm:pb-8">
+      <div className="flex items-center gap-3"><BrandIcon size={38} /><span className="eyebrow text-[#d8ff3e]">{page.kicker}</span></div>
+      <h1 className="mt-5 text-[30px] font-black tracking-[-0.05em] sm:text-[40px]">{page.title}</h1>
+      <p className="mt-4 max-w-2xl text-[13px] leading-6 text-[#94978e] sm:text-sm">{page.intro}</p>
+      <p className="mt-4 font-mono text-[9px] uppercase tracking-[0.12em] text-[#5f625a]">{t("legal.updated")}</p>
     </header>
     <div className="divide-y divide-white/8">
-      {page.sections.map(([title, text]) => <section key={title} className="grid gap-3 py-7 sm:grid-cols-[12rem_1fr] sm:gap-8"><h2 className="text-sm font-black tracking-tight">{title}</h2><p className="text-sm leading-7 text-[#85877f]">{text}</p></section>)}
+      {page.sections.map(([title, text]) => <section key={title} className="grid gap-2.5 py-6 sm:grid-cols-[10.5rem_1fr] sm:gap-7"><h2 className="text-[13px] font-black tracking-tight">{title}</h2><p className="text-[13px] leading-6 text-[#85877f]">{text}</p></section>)}
     </div>
     <div className="mt-6 flex flex-wrap gap-3"><a href="https://github.com/Komron-Nazarov" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-xs font-bold text-[#c7c9c1] hover:border-white/20">GitHub <ExternalLink size={12} /></a><a href="https://kn-portfolio-one.vercel.app/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-xs font-bold text-[#c7c9c1] hover:border-white/20">Portfolio <ExternalLink size={12} /></a></div>
   </article>;
