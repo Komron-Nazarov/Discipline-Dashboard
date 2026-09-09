@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight, BarChart3, BookOpen, CheckSquare2, Code2, ExternalLink, Landmark, Repeat2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import PwaRuntime from "@/components/pwa/PwaRuntime";
 import Sidebar from "./Sidebar";
 import BrandIcon from "./BrandIcon";
 import { I18nProvider, useI18n } from "@/lib/i18n";
@@ -29,6 +30,7 @@ function Shell({ children }: { children: ReactNode }) {
   const closeGuide = () => { localStorage.setItem("discipline-guide-seen", "1"); setGuideOpen(false); };
 
   return <>
+    <PwaRuntime />
     <Sidebar onGuide={openGuide} onAbout={() => setAboutOpen(true)} />
     <div className="flex items-center justify-between px-4 pt-3.5 md:hidden">
       <div className="flex items-center gap-2.5"><BrandIcon size={32} /><div><p className="text-[11px] font-black tracking-tight">DISCIPLINE OS</p><p className="eyebrow text-[6.5px] text-[#d8ff3e]">{t("brand.subtitle")}</p></div></div>

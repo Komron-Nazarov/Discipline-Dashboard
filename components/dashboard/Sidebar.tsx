@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, CheckSquare2, CircleGauge, Info, Landmark, Repeat2, Zap } from "lucide-react";
+import { Bell, BookOpen, CheckSquare2, CircleGauge, Info, Landmark, Repeat2, Zap } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BrandIcon from "./BrandIcon";
@@ -11,6 +11,7 @@ const menu = [
   { key: "nav.tasks" as const, shortKey: "nav.tasks" as const, icon: CheckSquare2, path: "/tasks" },
   { key: "nav.habits" as const, shortKey: "nav.habits" as const, icon: Repeat2, path: "/habits" },
   { key: "nav.finance" as const, shortKey: "nav.money" as const, icon: Landmark, path: "/finance" },
+  { key: "nav.reminders" as const, shortKey: "nav.remindersShort" as const, icon: Bell, path: "/reminders" },
 ];
 
 export default function Sidebar({ onGuide, onAbout }: { onGuide: () => void; onAbout: () => void }) {

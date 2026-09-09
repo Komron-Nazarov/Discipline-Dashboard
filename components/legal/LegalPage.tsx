@@ -15,7 +15,8 @@ const content = {
       title: "Политика конфиденциальности",
       intro: "Discipline OS создан Комроном Назаровым как локальная персональная система. Подход к данным максимально простой: содержимое твоей системы остаётся на твоём устройстве.",
       sections: [
-        ["Какие данные использует приложение", "Задачи, привычки, финансовые записи, выбранный язык и отметка о прохождении обучения сохраняются в локальном хранилище браузера (localStorage). Они нужны только для работы функций, которые ты сам используешь."],
+        ["Какие данные использует приложение", "Задачи, привычки, финансовые записи, напоминания, выбранный язык и отметка о прохождении обучения сохраняются в локальном хранилище браузера (localStorage). Они нужны только для работы функций, которые ты сам используешь."],
+        ["Уведомления и офлайн-режим", "Разрешение на уведомления запрашивается только после твоего действия. Расписание остаётся на устройстве. Для офлайн-работы интерфейс и статические файлы могут сохраняться в кэше устройства. Экспорт напоминания в календарь создаёт локальный файл и выполняется только по твоей команде."],
         ["Что не происходит", "Discipline OS не создаёт аккаунты, не отправляет содержимое задач или финансовых записей на сервер, не продаёт данные и не использует рекламные, аналитические или профилирующие трекеры."],
         ["Технические данные", "Хостинг-провайдер может автоматически обрабатывать ограниченные технические сведения — например IP-адрес, тип устройства и журналы запросов — для доставки и защиты сайта. Такая обработка регулируется политикой соответствующего провайдера."],
         ["Хранение и удаление", "Локальные записи хранятся, пока ты не удалишь их в приложении, не очистишь данные сайта в настройках браузера или не удалишь PWA вместе с его данными. Очистка данных браузера необратима."],
@@ -44,7 +45,8 @@ const content = {
       title: "Privacy Policy",
       intro: "Discipline OS was created by Komron Nazarov as a local-first personal system. The data model is deliberately simple: the contents of your system stay on your device.",
       sections: [
-        ["Data used by the app", "Tasks, habits, financial entries, language preference and guide status are stored in your browser’s local storage (localStorage). They are used only to provide the features you choose to use."],
+        ["Data used by the app", "Tasks, habits, financial entries, reminders, language preference and guide status are stored in your browser’s local storage (localStorage). They are used only to provide the features you choose to use."],
+        ["Notifications and offline mode", "Notification permission is requested only after your action. Reminder schedules stay on the device. The interface and static files may be cached for offline use. Calendar export creates a local file only when you request it."],
         ["What we do not do", "Discipline OS does not create accounts, send your task or financial content to a server, sell data, or use advertising, analytics or profiling trackers."],
         ["Technical data", "The hosting provider may automatically process limited technical information, such as an IP address, device type and request logs, to deliver and protect the site. That processing is governed by the relevant provider’s policy."],
         ["Storage and deletion", "Local records remain until you delete them in the app, clear site data in your browser, or remove the PWA together with its data. Clearing browser data cannot be undone."],

@@ -14,7 +14,8 @@
   "shortcuts": [
     { "name": "Задачи", "short_name": "Задачи", "url": "/tasks/", "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }] },
     { "name": "Привычки", "short_name": "Привычки", "url": "/habits/", "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }] },
-    { "name": "Финансы", "short_name": "Финансы", "url": "/finance/", "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }] }
+    { "name": "Финансы", "short_name": "Финансы", "url": "/finance/", "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }] },
+    { "name": "Напоминания", "short_name": "Напомнить", "url": "/reminders/", "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }] }
   ],
   "icons": [
     {
