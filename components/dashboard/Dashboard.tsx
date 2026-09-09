@@ -46,8 +46,7 @@ export default function Dashboard() {
       <section className="grid gap-5 xl:grid-cols-[1.45fr_.75fr]">
         <article className="panel min-w-0 overflow-hidden p-4.5 sm:p-6">
           <div className="mb-1 flex items-start justify-between"><div><p className="eyebrow">{t("dashboard.momentum")}</p><h2 className="mt-1.5 text-lg font-bold">{t("dashboard.trajectory")}</h2></div><Link href="/finance" className="grid size-9 place-items-center rounded-xl border border-white/8 text-[#85877f] transition hover:border-[#d8ff3e]/40 hover:text-[#d8ff3e]" aria-label={t("nav.finance")}><ArrowUpRight size={16} /></Link></div>
-          <PerformanceChart transactions={transactions} balanceLabel={t("chart.balance")} locale={locale} />
-          {!transactions.length && <p className="text-center text-[11px] text-[#5f625a]">{t("dashboard.preview")}</p>}
+          <PerformanceChart transactions={transactions} balanceLabel={t("chart.balance")} emptyLabel={t("dashboard.preview")} locale={locale} />
         </article>
         <article className="panel flex min-h-72 flex-col p-5">
           <div className="flex items-start justify-between"><div><p className="eyebrow">{t("dashboard.score")}</p><h2 className="mt-1.5 text-lg font-bold">{t("dashboard.rate")}</h2></div><span className="rounded-full bg-[#d8ff3e]/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-[#d8ff3e]">{t("dashboard.live")}</span></div>

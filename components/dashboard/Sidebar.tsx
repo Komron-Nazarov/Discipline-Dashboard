@@ -30,8 +30,8 @@ export default function Sidebar({ onGuide, onAbout }: { onGuide: () => void; onA
         })}
       </nav>
       <div className="mt-5 grid grid-cols-2 gap-2">
-        <button onClick={onGuide} className="flex items-center justify-center gap-1.5 rounded-xl border border-white/8 px-2 py-2 text-[9px] font-bold text-[#85877f] transition hover:border-white/15 hover:text-white"><BookOpen size={13} />{t("nav.guide")}</button>
-        <button onClick={onAbout} className="flex items-center justify-center gap-1.5 rounded-xl border border-white/8 px-2 py-2 text-[9px] font-bold text-[#85877f] transition hover:border-white/15 hover:text-white"><Info size={13} />{t("nav.about")}</button>
+        <button onClick={onGuide} className="flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white/8 px-2.5 py-2.5 text-[11px] font-bold text-[#a0a39b] transition hover:border-white/15 hover:bg-white/[0.025] hover:text-white"><BookOpen size={16} />{t("nav.guide")}</button>
+        <button onClick={onAbout} className="flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white/8 px-2.5 py-2.5 text-[11px] font-bold text-[#a0a39b] transition hover:border-white/15 hover:bg-white/[0.025] hover:text-white"><Info size={16} />{t("nav.about")}</button>
       </div>
       <div className="mt-auto space-y-3">
         <div className="flex rounded-xl border border-white/8 bg-white/[0.025] p-1">{(["ru", "en"] as const).map(item => <button key={item} onClick={() => setLocale(item)} className={`flex-1 rounded-lg py-1.5 text-[8px] font-black uppercase tracking-wider transition ${locale === item ? "bg-white text-black" : "text-[#686b63] hover:text-white"}`}>{item}</button>)}</div>
