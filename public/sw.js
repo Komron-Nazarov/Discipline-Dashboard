@@ -1,8 +1,30 @@
 const CACHE_VERSION = self.__CACHE_VERSION__ || "discipline-os-runtime-v1";
 const PRECACHE_URLS = self.__PRECACHE_URLS__ || ["/", "/tasks/", "/habits/", "/finance/", "/reminders/", "/manifest.json", "/icon-192x192.png", "/icon-512x512.png"];
 
+async function precacheApp() {
+  const cache = await caches.open(CACHE_VERSION);
+  const discovered = new Set();
+  await Promise.all(PRECACHE_URLS.map(async url => {
+    try {
+      const response = await fetch(url, { cache: "reload" });
+      if (!response.ok) return;
+      await cache.put(url, response.clone());
+      if ((response.headers.get("content-type") || "").includes("text/html")) {
+        const html = await response.text();
+        for (const match of html.matchAll(/(?:src|href)=["']([^"']+)["']/g)) {
+          const asset = new URL(match[1], self.location.origin);
+          if (asset.origin === self.location.origin && asset.pathname.startsWith("/_next/")) discovered.add(asset.href);
+        }
+      }
+    } catch {}
+  }));
+  await Promise.all(Array.from(discovered).map(async url => {
+    try { const response = await fetch(url, { cache: "reload" }); if (response.ok) await cache.put(url, response); } catch {}
+  }));
+}
+
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(PRECACHE_URLS)).then(() => self.skipWaiting()));
+  event.waitUntil(precacheApp().then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", event => {
