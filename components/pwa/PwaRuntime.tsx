@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { readReminders, reminderFireKey, reminderIsDue, REMINDER_UPDATE_EVENT } from "@/lib/reminders";
 
 const FIRED_KEY = "discipline-reminders-fired";
+const LAST_CHECK_KEY = "discipline-reminders-last-check";
 
 async function showSystemNotification(title: string, body: string, url = "/reminders/") {
   if (!("serviceWorker" in navigator) || !("Notification" in window) || Notification.permission !== "granted") return false;
@@ -17,9 +18,11 @@ export default function PwaRuntime() {
 
   const checkReminders = useCallback(async () => {
     const now = new Date();
+    const lastCheckValue = Number(localStorage.getItem(LAST_CHECK_KEY));
+    const since = new Date(Number.isFinite(lastCheckValue) && lastCheckValue > 0 ? lastCheckValue : now.getTime() - 15 * 60 * 1000);
     let fired = new Set<string>();
     try { fired = new Set<string>(JSON.parse(localStorage.getItem(FIRED_KEY) || "[]")); } catch { localStorage.removeItem(FIRED_KEY); }
-    const due = readReminders().filter(reminder => reminderIsDue(reminder, now) && !fired.has(reminderFireKey(reminder, now)));
+    const due = readReminders().filter(reminder => reminderIsDue(reminder, now, since) && !fired.has(reminderFireKey(reminder, now)));
     for (const reminder of due) {
       const key = reminderFireKey(reminder, now);
       fired.add(key);
@@ -27,6 +30,7 @@ export default function PwaRuntime() {
       if (!shown) setToast(reminder.title);
     }
     localStorage.setItem(FIRED_KEY, JSON.stringify(Array.from(fired).slice(-100)));
+    localStorage.setItem(LAST_CHECK_KEY, String(now.getTime()));
   }, []);
 
   useEffect(() => {

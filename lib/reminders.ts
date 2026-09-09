@@ -29,13 +29,13 @@ export function weekdayIndex(date: Date) {
   return (date.getDay() + 6) % 7;
 }
 
-export function reminderIsDue(reminder: Reminder, date: Date) {
+export function reminderIsDue(reminder: Reminder, date: Date, since?: Date) {
   if (!reminder.enabled || !reminder.days.includes(weekdayIndex(date))) return false;
   const [hours, minutes] = reminder.time.split(":").map(Number);
   const due = new Date(date);
   due.setHours(hours, minutes, 0, 0);
-  const delta = date.getTime() - due.getTime();
-  return delta >= 0 && delta < 15 * 60 * 1000;
+  const earliest = since?.getTime() ?? date.getTime() - 15 * 60 * 1000;
+  return due.getTime() <= date.getTime() && due.getTime() > earliest;
 }
 
 export function reminderFireKey(reminder: Reminder, date: Date) {
